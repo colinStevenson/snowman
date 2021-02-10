@@ -1,28 +1,45 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <Navbar
+      @reset="handleGameReset"
+      @phraseUpdate="handlePhraseUpdate"
+    />
+    <GameBoard
+      :phrase="activePhrase"
+      :guesses="guesses"
+      @letterSelect="handleLetterSelect"
+    />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import GameBoard from '@/components/GameBoard'
+import Navbar from '@/components/Navbar'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    GameBoard,
+    Navbar
+  },
+  data () {
+    return {
+      activePhrase: 'Snowman',
+      guesses: []
+    }
+  },
+  methods: {
+    handleGameReset () {
+      this.guesses = []
+    },
+    handleLetterSelect (letter) {
+      this.guesses.push(letter)
+    },
+    handlePhraseUpdate (phrase) {
+      this.activePhrase = phrase
+      this.handleGameReset()
+    }
   }
 }
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+<style src="../node_modules/bootstrap/dist/css/bootstrap.min.css"  />
