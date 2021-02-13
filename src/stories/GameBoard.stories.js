@@ -9,10 +9,10 @@ const Template = (args, { argTypes }) => ({
     props: Object.keys(argTypes),
     components: { GameBoard },
     template:
-      '<GameBoard :clue="clue" />',
+      '<GameBoard :phrase="phrase" />',
 });
 
 export const Def = Template.bind({});
 Def.args = {
-    clue: 'Hello World'
+    phrase: 'Hello World'
 };
