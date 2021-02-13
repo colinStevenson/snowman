@@ -5,6 +5,7 @@
             v-bind:key="i"
             :letter="letter"
             :isSelected="guesses.includes(letter)"
+            :isBadGuess="checkLetterBadGuess(letter)"
             @select="handleSelection"
             />
     </div>
@@ -27,12 +28,19 @@ export default {
     methods: {
         handleSelection (letter) {
             this.$emit('select', letter)
+        },
+        checkLetterBadGuess (letter) {
+            return this.phrase.toLowerCase().indexOf(letter) === -1
         }
     },
     props: {
         guesses: {
             type: Array,
             default: () => []
+        },
+        phrase: {
+            type: String,
+            required: true
         }
     }
 }

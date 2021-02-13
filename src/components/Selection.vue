@@ -1,6 +1,7 @@
 <template>
     <button
         class="btn btn-link text-uppercase btn-selection"
+        :class="isBadGuess && isSelected ? 'bad' : ''"
         @click="select(letter)"
         @select="select(letter)"
         :disabled="isSelected">
@@ -22,12 +23,31 @@ export default {
         isSelected: {
             type: Boolean,
             default: false
+        },
+        isBadGuess: {
+            type: Boolean,
+            default: false
         }
     }
 }
 </script>
-<style>
+<style lang="scss">
 .btn-selection{
     font-size: 3rem !important;
+
+    &.bad{
+        position: relative;
+        &:before{
+            top: 50%;
+            left: 0;
+            content:  '';
+            height: 4px;
+            width: 100%;
+            background: red;
+            position: absolute;
+            transform: rotate(45deg) translateY(-50%);
+
+        }
+    }
 }
 </style>

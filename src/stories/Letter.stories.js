@@ -1,4 +1,4 @@
-import Letter from '../components/Letter'
+import Letter from '@/components/Letter'
 
 export default {
     title: 'Letter',

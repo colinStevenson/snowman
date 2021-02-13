@@ -17,6 +17,7 @@
         </div>
         <Selections
             :guesses="guesses"
+            :phrase="phrase"
             @select="handleSelection"
             />
     </div>
