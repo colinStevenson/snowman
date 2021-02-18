@@ -1,6 +1,7 @@
 <template>
     <span class="tile display-4">
-        <span v-if="isRevealed">{{letter}}</span>
+        <span v-if="!isLetter(letter)">{{letter}}</span>
+        <span v-else-if="isRevealed">{{letter}}</span>
         <span v-else>&nbsp;</span>
     </span>
 </template>
@@ -14,6 +15,11 @@ export default {
         isRevealed: {
             type: Boolean,
             default: false
+        }
+    },
+    methods: {
+        isLetter (letter) {
+            return /^[a-zA-Z]+$/.test(letter)
         }
     }
 }
