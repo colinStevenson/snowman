@@ -35,7 +35,7 @@ export default {
     },
     computed: {
         characters () {
-            return [...this.phrase.replace(/\s/g, '').toLowerCase()]
+            return [...this.phrase.replace(/\s/g, '').toLowerCase()].filter(c => /^[a-zA-Z]+$/.test(c))
         },
         badGuesses () {
             return this.guesses.filter(guess => {
