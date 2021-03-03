@@ -12,7 +12,7 @@
                 </div>
             </div>
             <div class="col">
-                <Snowman :guessCount="badGuesses.length" />
+                <Snowman :maxGUesses="MAX_BAD_GUESSES" :guessCount="badGuesses.length" />
             </div>
         </div>
         <Selections
@@ -23,7 +23,7 @@
     </div>
 </template>
 <script>
-const MAX_BAD_GUESSES = 10
+const MAX_BAD_GUESSES = 18
 import Selections from '@/components/Selections'
 import Snowman from '@/components/Snowman'
 import Word from '@/components/Word'
