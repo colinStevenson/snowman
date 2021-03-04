@@ -18,7 +18,7 @@
                 </div>
             </div>
             <div class="col">
-                <Snowman :difficulty="difficulty" :guessCount="badGuesses.length" />
+                <Snowman :color="color" :difficulty="difficulty" :guessCount="badGuesses.length" />
             </div>
         </div>
         <Selections
