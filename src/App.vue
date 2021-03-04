@@ -2,9 +2,13 @@
   <div id="app">
     <Navbar
       @reset="handleGameReset"
+      @colorUpdate="handleColorUpdate"
+      @difficultyUpdate="handleDifficultyUpdate"
       @phraseUpdate="handlePhraseUpdate"
     />
     <GameBoard
+      :color="color"
+      :difficulty="difficulty"
       :phrase="activePhrase"
       :guesses="guesses"
       @letterSelect="handleLetterSelect"
@@ -25,10 +29,19 @@ export default {
   data () {
     return {
       activePhrase: 'Snowman',
+      color: '#000',
+      difficulty: 'easy',
       guesses: []
     }
   },
   methods: {
+    handleColorUpdate (color) {
+      this.color = color
+    },
+    handleDifficultyUpdate (difficulty) {
+      this.difficulty = difficulty
+      this.handleGameReset()
+    },
     handleGameReset () {
       this.guesses = []
     },
@@ -43,3 +56,10 @@ export default {
 }
 </script>
 <style src="../node_modules/bootstrap/dist/css/bootstrap.min.css"  />
+<style>
+input[type="color"]{
+  height: 2em;
+  width: 2em;
+  vertical-align: middle;
+}
+</style>

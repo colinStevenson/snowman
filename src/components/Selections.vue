@@ -3,6 +3,7 @@
         <Selection
             v-for="(letter, i) in letters"
             v-bind:key="i"
+            :color="color"
             :letter="letter"
             :isSelected="guesses.includes(letter)"
             :isBadGuess="checkLetterBadGuess(letter)"
@@ -34,6 +35,10 @@ export default {
         }
     },
     props: {
+        color: {
+            type: String,
+            required: true
+        },
         guesses: {
             type: Array,
             default: () => []

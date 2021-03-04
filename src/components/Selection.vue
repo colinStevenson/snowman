@@ -4,8 +4,10 @@
         :class="isBadGuess && isSelected ? 'bad' : ''"
         @click="select(letter)"
         @select="select(letter)"
-        :disabled="isSelected">
-            {{letter}}
+        :disabled="isSelected"
+        :style="`color: ${color}`"
+    >
+        {{letter}}
     </button>
 </template>
 <script>
@@ -16,6 +18,10 @@ export default {
         }
     },
     props: {
+        color: {
+            type: String,
+            required: true
+        },
         letter: {
             type: String,
             required: true
