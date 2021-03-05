@@ -1,26 +1,26 @@
 {
 	"easy":{
 	   "bodyParts":{
-		  "arm-one":3,
-		  "arm-two":4,
+		  "arm-one":2,
+		  "arm-two":3,
 		  "body-one":0,
 		  "body-two":1,
-		  "button-one":7,
-		  "button-two":6,
-		  "button-three":5,
-		  "hat":17,
-		  "head":8,
-		  "eye-one":10,
-		  "eye-two":11,
-		  "mouth-one":16,
-		  "mouth-two":13,
-		  "mouth-three":12,
-		  "mouth-four":14,
-		  "mouth-five":15,
-		  "nose":9,
-		  "scarf":2
+		  "button-one":6,
+		  "button-two":5,
+		  "button-three":4,
+		  "hat":16,
+		  "head":7,
+		  "eye-one":9,
+		  "eye-two":10,
+		  "mouth-one":15,
+		  "mouth-two":12,
+		  "mouth-three":11,
+		  "mouth-four":13,
+		  "mouth-five":14,
+		  "nose":8,
+		  "scarf":1
 	   },
-	   "maxGuesses":18
+	   "maxGuesses":17
 	},
 	"medium":{
 	   "bodyParts":{
