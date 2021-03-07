@@ -1,7 +1,13 @@
 <template>
     <div class="container-fluid">
-        <h1 v-if="hasWon" class="my-3">Winner</h1>
-        <h1 v-if="hasLost" class="my-3">Loser</h1>
+        <div
+            v-if="hasLost || hasWon"
+            :class="{ 'alert-danger': hasLost, 'alert-success': hasWon }"
+            class="alert"
+            role="alert"
+        >
+            <strong>{{ hasLost ? 'Nice Try!' : 'Congatulations!' }}</strong> The phrase was <a :href="`https://www.merriam-webster.com/dictionary/${this.phrase}`" target="_blank">{{ this.phrase }}</a>.
+        </div>
         <div class="row">
             <div class="col">
                 <div v-for="(word, i) in words" v-bind:key="i">
@@ -12,18 +18,19 @@
                 </div>
             </div>
             <div class="col">
-                <Snowman :guessCount="badGuesses.length" />
+                <Snowman :color="color" :difficulty="difficulty" :guessCount="badGuesses.length" />
             </div>
         </div>
         <Selections
+            :color="color"
             :guesses="guesses"
             :phrase="phrase"
             @select="handleSelection"
-            />
+        />
     </div>
 </template>
 <script>
-const MAX_BAD_GUESSES = 10
+import rules from '@/config/game-rules'
 import Selections from '@/components/Selections'
 import Snowman from '@/components/Snowman'
 import Word from '@/components/Word'
@@ -63,22 +70,33 @@ export default {
             return val
         },
         hasLost () {
-            return this.badGuesses.length >= MAX_BAD_GUESSES
+            return this.badGuesses.length >= rules[this.difficulty].maxGuesses
         }
     },
     props: {
+        color: {
+            type: String,
+            required: true
+        },
+        difficulty: {
+            type: String,
+            required: true
+        },
         guesses: {
             type: Array,
             default: () => []
         },
         phrase: {
             type: String,
-            default: 'Hello World'
+            required: true
         }
     },
     methods: {
         handleSelection (letter) {
-            this.$emit('letterSelect', letter)
+            // disallow additional guesses after win/loss
+            if(!this.hasWon && !this.hasLost) {
+                this.$emit('letterSelect', letter)
+            }
         }
     }
 }
