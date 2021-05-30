@@ -50,7 +50,6 @@ export default {
       this.guesses = []
     },
     handleSound () {
-      console.log('This is the handler')
       this.sound = !this.sound
     },
     handleLetterSelect (letter) {
