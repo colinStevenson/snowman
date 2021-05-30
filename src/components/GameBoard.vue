@@ -1,5 +1,6 @@
 <template>
-    <div class="container-fluid">
+    <div class="container-fluid" >
+        <Pyro v-if="hasWon" :sound="sound" />        
         <div
             v-if="hasLost || hasWon"
             :class="{ 'alert-danger': hasLost, 'alert-success': hasWon }"
@@ -8,7 +9,7 @@
         >
             <strong>{{ hasLost ? 'Nice Try!' : 'Congatulations!' }}</strong> The phrase was <a :href="`https://www.merriam-webster.com/dictionary/${this.phrase}`" target="_blank">{{ this.phrase }}</a>.
         </div>
-        <div class="row">
+        <div class="row" >
             <div class="col">
                 <div v-for="(word, i) in words" v-bind:key="i">
                     <Word
@@ -33,11 +34,13 @@
 import rules from '@/config/game-rules'
 import Selections from '@/components/Selections'
 import Snowman from '@/components/Snowman'
+import Pyro from '@/components/Pyro'
 import Word from '@/components/Word'
 export default {
     components: {
         Selections,
         Snowman,
+        Pyro,
         Word
     },
     computed: {
@@ -76,6 +79,10 @@ export default {
     props: {
         color: {
             type: String,
+            required: true
+        },
+        sound: {
+            type: Boolean,
             required: true
         },
         difficulty: {

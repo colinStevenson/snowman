@@ -37,6 +37,13 @@
             </template>
         </div>
         <div class="form-inline">
+            <label class="mr-sm-2" for="sound-check">Sound</label>
+            <input
+                @change="setSound"
+                :checked="sound"
+                class="form-control mr-sm-2"
+                id="sound-check"
+                type="checkbox" />
             <select
                 class="custom-select custom-select-sm mr-sm-2"
                 @change="selectDifficulty"
@@ -85,6 +92,9 @@ export default {
         changeColor (e) {
             this.$emit('colorUpdate', e.target.value)
         },
+        setSound () {
+            this.$emit('soundUpdate')
+        },
         generateRandom () {
             this.phrase = rword.generate()
             this.handleSave()
@@ -97,6 +107,12 @@ export default {
             this.$emit('phraseUpdate', this.phrase)
             this.phrase = ''
             this.isEditingPhrase = false
+        }
+    },
+    props: {
+        sound: {
+            type: Boolean,
+            required: true
         }
     }
 }

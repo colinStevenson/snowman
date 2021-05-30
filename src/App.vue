@@ -1,12 +1,15 @@
 <template>
   <div id="app">
     <Navbar
+      :sound="sound"
       @reset="handleGameReset"
       @colorUpdate="handleColorUpdate"
       @difficultyUpdate="handleDifficultyUpdate"
       @phraseUpdate="handlePhraseUpdate"
+      @soundUpdate="handleSound"
     />
     <GameBoard
+      :sound="sound"
       :color="color"
       :difficulty="difficulty"
       :phrase="activePhrase"
@@ -31,7 +34,8 @@ export default {
       activePhrase: 'Snowman',
       color: '#000',
       difficulty: 'easy',
-      guesses: []
+      guesses: [],
+      sound: false
     }
   },
   methods: {
@@ -44,6 +48,10 @@ export default {
     },
     handleGameReset () {
       this.guesses = []
+    },
+    handleSound () {
+      console.log('This is the handler')
+      this.sound = !this.sound
     },
     handleLetterSelect (letter) {
       this.guesses.push(letter)
